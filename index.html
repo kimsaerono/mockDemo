@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .textCon {
+            width: 100px;
+            height: 34px;
+            font-size:12px;
+            display: inline-block
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button class="getList">getList</button> 
+        <input type="text" class="listVal">
+    </div>
+    <div>
+        <button class="getText">getText</button>
+        <div class="textCon"></div> 
+    </div>
+    
+</body>
+<script type="text/javascript" src="../jquery-1.11.2.js"></script>
+<script type="text/javascript">
+    $(".getList").click(function(){
+        $.ajax({
+             type: "GET",
+             url: "http://localhost:8081/getList",
+             data: {},
+             dataType: "json",
+             success: function(data){
+                        console.log(data.list);
+                        $(".listVal").val(data)
+                      }
+                        // $(".listCon").text(data.list.list[0].id);
+
+         });
+    });
+    $(".getText").click(function(){
+        $.ajax({
+             type: "GET",
+             url: "http://localhost:8081/getText",
+             data: {},
+             dataType: "json",
+             success: function(data){
+                        console.log(data.text);
+                        $(".textCon").text(data.text);
+                      }
+
+         });
+    });
+</script>
+</html>
